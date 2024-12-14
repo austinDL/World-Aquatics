@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Event, Heat, Result, Split } from '../Components/Interfaces'
 import { EventPayload, HeatPayload, ResultPayload, SplitPayload } from '../Components/PayloadInterfaces';
 const BASE_URL: string = 'https://knuptj4lr9.execute-api.ap-southeast-2.amazonaws.com/dev';
+
 // const END_POINTS: Record<string, string> = {
 //     Budapest: 'b344ceee-7bae-4076-a34a-e019524c72ff'
 // };
@@ -16,7 +17,6 @@ export async function loadEventData(location:string): Promise<Event> {
         }
     });
     const data = response.data;
-    console.log(response);
 
     const event: Event = {
         id: data.Id,

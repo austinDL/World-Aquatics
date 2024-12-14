@@ -3,13 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { loadEventData } from '../API/Fetch';
 import { Event } from './Interfaces';
 
-loadEventData('budapest').then(
-    event => {
-        console.log(event.name);
-        console.log(event.heats);
-    }
-)
-
 const event_location: string = 'Budapest';
 
 const EventDisplay: React.FC = () => {
