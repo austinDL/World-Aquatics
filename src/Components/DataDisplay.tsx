@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { loadEventData } from '../API/Fetch';
-import Event from './Interfaces';
+import { Event } from './Interfaces';
 
 loadEventData('budapest').then(
     event => {
@@ -10,7 +10,7 @@ loadEventData('budapest').then(
     }
 )
 
-var event_location: string = 'Budapest';
+const event_location: string = 'Budapest';
 
 const EventDisplay = () => {
     const [event_data, set_event_data] = useState<Event|null>(null);
@@ -43,17 +43,17 @@ const EventDisplay = () => {
 
     return (
         <div>
-            <h1>Simming Event at: {event_location}</h1>
+            <h1>Swimming Event at: {event_location}</h1>
             <h2>{event_data.name}</h2>
             <ul>
-                {event_data.heats.map(heat => {
-                    <li key={heat.id}>
+                {event_data.heats.map(heat => (
+                    <li key={heat.name}>
                         {heat.name}
                     </li>
-                })}
+                ))}
             </ul>
         </div>
-    )
+    );
 }
 
 export default EventDisplay;
