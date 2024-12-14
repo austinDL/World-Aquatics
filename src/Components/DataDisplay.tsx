@@ -12,7 +12,7 @@ loadEventData('budapest').then(
 
 const event_location: string = 'Budapest';
 
-const EventDisplay = () => {
+const EventDisplay: React.FC = () => {
     const [event_data, set_event_data] = useState<Event|null>(null);
     const [is_loading, set_is_loading] = useState<boolean>(true);
     const [error_message, set_error_message] = useState<string|null>(null);
