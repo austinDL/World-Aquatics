@@ -14,7 +14,7 @@ const EventDisplay: React.FC = () => {
     const navigate = useNavigate();
 
     function handle_heat_click(heat:Heat) {
-        navigate(`heat/${heat.name}`, {
+        navigate(`heat/${heat.name.replace(' ', '_').toLowerCase()}`, {
             state: { heat }
         });
     }
