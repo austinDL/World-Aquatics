@@ -9,8 +9,10 @@ const END_POINTS: Record<string, string> = {
 export async function loadEventData(location:string): Promise<Event> {
     // Extract the payload of the event in the selected location
     const url: string = `${BASE_URL}/${END_POINTS[location]}`;
+    console.log(url);
     const response = await axios.get<EventPayload>(url);
     const data = response.data;
+    console.log(response);
 
     const event: Event = {
         id: data.Id,
