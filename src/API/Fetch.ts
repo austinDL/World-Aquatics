@@ -6,9 +6,10 @@ const BASE_URL: string = 'https://knuptj4lr9.execute-api.ap-southeast-2.amazonaw
 //     Budapest: 'b344ceee-7bae-4076-a34a-e019524c72ff'
 // };
 
-export async function loadEventData(/*location:string*/): Promise<Event> {
+export async function loadEventData(location:string): Promise<Event> {
     // Extract the payload of the event in the selected location
     const url: string = `${BASE_URL}`;
+    console.log(`Fetching event data for: ${location}`);
     const response = await axios.get<EventPayload>(url, {
         headers: {
             'Content-Type': 'application/json'
