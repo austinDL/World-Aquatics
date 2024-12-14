@@ -1,5 +1,5 @@
 // import { useEffect, useState } from "react";
-import EventDisplay from './Components/DataDisplay';
+import EventDisplay from './Components/EventDisplay';
 
 function App() {
 
