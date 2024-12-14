@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { loadEventData } from '../API/Fetch';
-import { Event } from './Interfaces';
+import { Event, Heat } from './Interfaces';
 
 const event_location: string = 'Budapest';
 
@@ -9,6 +10,14 @@ const EventDisplay: React.FC = () => {
     const [event_data, set_event_data] = useState<Event|null>(null);
     const [is_loading, set_is_loading] = useState<boolean>(true);
     const [error_message, set_error_message] = useState<string|null>(null);
+
+    const navigate = useNavigate();
+
+    function handle_heat_click(heat:Heat) {
+        navigate(`heat/${heat.name}`, {
+            state: { heat }
+        });
+    }
 
     useEffect(() => {
         const fetch_data = async () => {
@@ -46,7 +55,7 @@ const EventDisplay: React.FC = () => {
             <p>Select a Heat to view the Results</p>
             <ul>
                 {event_data.heats.filter(heat => ! heat.is_summary).map(heat => (
-                    <li key={heat.name}>
+                    <li key={heat.name} onClick={() => handle_heat_click(heat)}>
                         {heat.name}
                     </li>
                 ))}
