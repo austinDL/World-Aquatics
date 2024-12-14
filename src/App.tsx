@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
+import EventDisplay from './Components/DataDisplay';
 
 const client = generateClient<Schema>();
 
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <main>
+      <EventDisplay />
       <h1>My todos - Test Change</h1>
       <button onClick={createTodo}>+ new</button>
       <ul>
