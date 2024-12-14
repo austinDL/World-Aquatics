@@ -18,13 +18,18 @@ const EventDisplay: React.FC = () => {
     const [error_message, set_error_message] = useState<string|null>(null);
 
     useEffect(() => {
-        try {
-            const data: Event = await loadEventData(event_location);
-            set_event_data(data);
-        } catch (err) {
-            set_error_message(`Failed while fetching the event data for ${event_location}`);
-            set_is_loading(false);
+        const fetch_data = async () => {
+            try {
+                const data: Event = await loadEventData(event_location);
+                set_event_data(data);
+                set_is_loading(false);
+            } catch (err) {
+                set_error_message(`Failed while fetching the event data for ${event_location}`);
+                set_is_loading(false);
+            }
         }
+
+        fetch_data();
     }, []);
 
     // Check if we are still loading or loading yielded no results
