@@ -35,7 +35,7 @@ export interface Heat {
 
 export interface Result {
     id: string,
-    RT: string,
+    reaction_time: string,
     lane: number,
     swimmer: Swimmer,
     splits: Split[],
