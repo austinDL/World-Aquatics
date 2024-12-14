@@ -1,7 +1,7 @@
-export default interface Event {
+export interface Event {
     id: string,
     name: string,
-    age_group: number | null,
+    age_group: string | null,
     comment: string | null,
     discipline_name: string,
     discipline_start_date: string,
@@ -15,8 +15,8 @@ export default interface Event {
     gender: string,
     sport_code: string
 }
-interface Heat {
-    id: string,
+
+export interface Heat {
     name: string,
     phase_code: string,
     sport_code: string,
@@ -33,7 +33,7 @@ interface Heat {
     result_status: string
 }
 
-interface Result {
+export interface Result {
     id: string,
     RT: string,
     lane: number,
@@ -49,7 +49,7 @@ interface Result {
     medal_tag: string
 }
 
-interface Swimmer {
+export interface Swimmer {
     id: string, // Need to figure out how to extract swimmer's details via the api
     first_name: string,
     last_name: string,
@@ -57,9 +57,9 @@ interface Swimmer {
     age: number
 }
 
-interface Split {
+export interface Split {
     time: number,
-    distance: number,
+    distance: number | null,
     order: number,
     differential_tiem: number
 }
