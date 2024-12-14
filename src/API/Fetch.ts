@@ -73,7 +73,7 @@ function map_heat(heat:HeatPayload): Heat {
 function map_result(result:ResultPayload): Result {
     return {
         id: result.ResultId,
-        RT: result.RT,
+        reaction_time: result.RT,
         lane: result.Lane,
         swimmer: {
             id: result.PersonId,
