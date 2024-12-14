@@ -43,8 +43,9 @@ const EventDisplay: React.FC = () => {
         <div>
             <h1>Swimming Event at: {event_location}</h1>
             <h2>{event_data.name}</h2>
+            <p>Select a Heat to view the Results</p>
             <ul>
-                {event_data.heats.map(heat => (
+                {event_data.heats.filter(heat => ! heat.is_summary).map(heat => (
                     <li key={heat.name}>
                         {heat.name}
                     </li>
