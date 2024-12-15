@@ -1,23 +1,50 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 import { Heat } from './Interfaces';
 
 const HeatDisplay: React.FC = () => {
     const { state } = useLocation();
     const heat: Heat = state.heat;
 
+    // Define the Heat properties to display
+    const rows: GridRowsProp = heat.results.map(result => ({
+        id: result.id,
+        athlete_name: `${result.swimmer.first_name} ${result.swimmer.last_name}`,
+        country: result.NAT,
+        reaction_time: result.reaction_time,
+        time: result.time,
+        time_behind: result.time_behind || "Winner" // If time behind is null, then they are the winner of the heat
+    }))
+
+    // Define the grid structure
+    const columns: GridColDef[] = [
+        {
+            field: "athlete_name",
+            headerName: "Athlete Name"
+        },
+        {
+            field: "country",
+            headerName: "Country"
+        },
+        {
+            field: "reaction_time",
+            headerName: "Reaction Time (s)"
+        },
+        {
+            field: "time",
+            headerName: "Time (s)"
+        },
+        {
+            field: "time_behind",
+            headerName: "Time Behind (s)"
+        }
+    ]
+
     return (
         <div>
             <h1>{heat.name}</h1>
-            <ul>
-                {
-                    heat.results.map(result => (
-                        <li key={result.id}>
-                            {result.reaction_time}
-                        </li>
-                    ))
-                }
-            </ul>
+            <DataGrid rows={rows} columns={columns} />
         </div>
     );
 }
