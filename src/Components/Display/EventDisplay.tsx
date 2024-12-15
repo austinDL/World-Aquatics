@@ -51,6 +51,7 @@ const EventDisplay: React.FC = () => {
         )
     }
 
+    // Load in the data from the API
     useEffect(() => {
         const fetch_data = async () => {
             if (event_data !== null) return;
@@ -76,11 +77,12 @@ const EventDisplay: React.FC = () => {
     if (error_message !== null) {
         return <div>{error_message}</div>;
     }
-
+    // Catch the possibility that event_data is still null after loading
     if (event_data === null) {
         return <div>Event data is empty after loading. Please refresh the page...</div>
     }
 
+    // Partition the heats
     const finalHeats: Heat[] = filter_heats(event_data, "final", "semi");
     const semiFinalHeats: Heat[] = filter_heats(event_data, "semifinal");
     const standardHeats: Heat[] = filter_heats(event_data, "heat");

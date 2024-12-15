@@ -14,6 +14,7 @@ const Banner: React.FC = () => {
     return (
         <div style={{height: `${height_px}px`, paddingBottom: '40px'}}>
             <a className="clickable" href="https://www.swimming.org.au/">
+                {/* This box applies the gradient behind the image logo */}
                 <Box 
                     component="div"
                     sx={{

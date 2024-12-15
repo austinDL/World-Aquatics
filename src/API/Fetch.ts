@@ -1,17 +1,28 @@
 import axios from 'axios';
 import { Event, Heat, Result, Split } from '../Components/Interfaces/ComponentInterfaces'
 import { EventPayload, HeatPayload, ResultPayload, SplitPayload } from '../Components/Interfaces/PayloadInterfaces';
+// URL path to API Gateway that gets data from World Aquatics API
 const BASE_URL: string = 'https://knuptj4lr9.execute-api.ap-southeast-2.amazonaws.com/dev';
 
-// const END_POINTS: Record<string, string> = {
-//     Budapest: 'b344ceee-7bae-4076-a34a-e019524c72ff'
-// };
-
+// Helper function for displaying text
 function toTitleCase(name:string): string {
     const first_letter = name[0].toUpperCase();
     const remainder = name.slice(1).toLowerCase();
 
     return first_letter.concat(remainder);
+}
+
+// Helper function for getting the float representiation of distance
+function extract_distance(distance:string|null): number|null {
+    if (distance === null) {
+        return null;
+    }
+    // Extract the number including decimals
+    const number_match: RegExpMatchArray | null = distance.match(/[\d.]+/);
+    if (number_match === null) {
+        return null;
+    }
+    return parseFloat(number_match[0]);
 }
 
 export async function loadEventData(location:string): Promise<Event> {
@@ -25,37 +36,27 @@ export async function loadEventData(location:string): Promise<Event> {
     });
     const data = response.data;
 
-    const event: Event = {
-        id: data.Id,
-        name: data.EventName,
-        age_group: data.AgeGroup,
-        comment: data.Comment,
-        discipline_name: data.DisciplineName,
-        discipline_start_date: data.DisciplineStartDate,
-        discipline_end_date: data.DisciplineEndDate,
-        discipline_start_time: data.DisciplineStartTime,
-        discipline_end_time: data.DisciplineEndTime,
-        official_name: data.EventOfficialName,
-        result_date: data.EventResultDate,
-        result_time: data.EventResultTime,
-        heats: data.Heats.map(map_heat),
-        gender: data.Gender,
-        sport_code: data.SportCode
-    }
-
-    return event;
+    return map_event(data);
 }
 
-function _extract_distance(distance:string|null): number|null {
-    if (distance === null) {
-        return null;
+function map_event(event:EventPayload) {
+    return {
+        id: event.Id,
+        name: event.EventName,
+        age_group: event.AgeGroup,
+        comment: event.Comment,
+        discipline_name: event.DisciplineName,
+        discipline_start_date: event.DisciplineStartDate,
+        discipline_end_date: event.DisciplineEndDate,
+        discipline_start_time: event.DisciplineStartTime,
+        discipline_end_time: event.DisciplineEndTime,
+        official_name: event.EventOfficialName,
+        result_date: event.EventResultDate,
+        result_time: event.EventResultTime,
+        heats: event.Heats.map(map_heat),
+        gender: event.Gender,
+        sport_code: event.SportCode
     }
-    // Extract the number including decimals
-    const number_match: RegExpMatchArray | null = distance.match(/[\d.]+/);
-    if (number_match === null) {
-        return null;
-    }
-    return parseFloat(number_match[0]);
 }
 
 function map_heat(heat:HeatPayload): Heat {
@@ -72,7 +73,7 @@ function map_heat(heat:HeatPayload): Heat {
         results: heat.Results.map(map_result),
         is_summary: heat.IsSummary,
         is_exclude_from_event_summary: heat.ExcludeFromEventSummary,
-        distance: _extract_distance(heat.Distance),
+        distance: extract_distance(heat.Distance),
         result_status: heat.ResultStatus
     }
 }
@@ -104,7 +105,7 @@ function map_result(result:ResultPayload): Result {
 function map_split(split:SplitPayload): Split {
     return {
         time: parseFloat(split.Time),
-        distance: _extract_distance(split.Distance),
+        distance: extract_distance(split.Distance),
         order: split.Order,
         differential_time: parseFloat(split.DifferentialTime)
     }

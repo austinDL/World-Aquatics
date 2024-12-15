@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Swimmer } from "../Interfaces/ComponentInterfaces";
-import { ReturnHome } from '../Buttons';
+import { ReturnHome, GoBack } from '../Buttons';
 
 const SwimmerDisplay: React.FC = () => {
     const { state } = useLocation();
@@ -11,6 +11,7 @@ const SwimmerDisplay: React.FC = () => {
     return (
         <div>
             <ReturnHome />
+            <GoBack button_text='Return to Heats'/>
             <h1>{full_name}</h1>
             <p>At {swimmer.age} years old, {full_name} has been competing as a swimmer for their home country of {swimmer.NAT}</p>
         </div>
