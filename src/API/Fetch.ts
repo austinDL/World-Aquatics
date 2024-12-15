@@ -7,6 +7,13 @@ const BASE_URL: string = 'https://knuptj4lr9.execute-api.ap-southeast-2.amazonaw
 //     Budapest: 'b344ceee-7bae-4076-a34a-e019524c72ff'
 // };
 
+function toTitleCase(name:string): string {
+    const first_letter = name[0].toUpperCase();
+    const remainder = name.slice(1).toLowerCase();
+
+    return first_letter.concat(remainder);
+}
+
 export async function loadEventData(location:string): Promise<Event> {
     // Extract the payload of the event in the selected location
     const url: string = `${BASE_URL}`;
@@ -77,8 +84,8 @@ function map_result(result:ResultPayload): Result {
         lane: result.Lane,
         swimmer: {
             id: result.PersonId,
-            first_name: result.FirstName,
-            last_name: result.LastName,
+            first_name: toTitleCase(result.FirstName),
+            last_name: toTitleCase(result.LastName),
             gender: result.Gender,
             NAT: result.NAT,
             age: result.AthleteResultAge
