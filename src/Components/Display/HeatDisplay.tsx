@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, Paper } from '@mui/material';
-import { Heat, Swimmer, Split } from './Interfaces';
-import { ReturnHome } from './Buttons';
+import { Heat, Swimmer, Split } from '../Interfaces/ComponentInterfaces';
+import { ReturnHome } from '../Buttons';
 import SplitDisplay from './SplitDisplay';
 import './Components.css';
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Dialog, DialogActions, DialogContent, DialogTitle, Button } from '@mui/material';
 import { List, ListItem } from '@mui/material';
-import { Split, Swimmer } from './Interfaces';
+import { Split, Swimmer } from '../Interfaces/ComponentInterfaces';
 
 interface SplitParams {
     splits: Split[] | null,

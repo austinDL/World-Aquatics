@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { Event, Heat, Result, Split } from '../Components/Interfaces'
-import { EventPayload, HeatPayload, ResultPayload, SplitPayload } from '../Components/PayloadInterfaces';
+import { Event, Heat, Result, Split } from '../Components/Interfaces/ComponentInterfaces'
+import { EventPayload, HeatPayload, ResultPayload, SplitPayload } from '../Components/Interfaces/PayloadInterfaces';
 const BASE_URL: string = 'https://knuptj4lr9.execute-api.ap-southeast-2.amazonaws.com/dev';
 
 // const END_POINTS: Record<string, string> = {

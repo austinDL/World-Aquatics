@@ -1,7 +1,7 @@
 // import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import EventDisplay from './Components/EventDisplay';
-import HeatDisplay from './Components/HeatDisplay';
+import EventDisplay from './Components/Display/EventDisplay';
+import HeatDisplay from './Components/Display/HeatDisplay';
 import SwimmerDisplay from './Components/SwimmerDisplay';
 import Banner from './Components/Banner';
 
