@@ -35,7 +35,7 @@ export interface Heat {
 
 export interface Result {
     id: string,
-    RT: string,
+    reaction_time: string,
     lane: number,
     swimmer: Swimmer,
     splits: Split[],
@@ -44,7 +44,6 @@ export interface Result {
     time_behind: number,
     rank: number,
     heat_rank: number,
-    NAT: string,
     scoreboard_photo_id: string, // Need to figure out how to get this photo
     medal_tag: string
 }
@@ -54,6 +53,7 @@ export interface Swimmer {
     first_name: string,
     last_name: string,
     gender: number,
+    NAT: string,
     age: number
 }
 
@@ -61,5 +61,5 @@ export interface Split {
     time: number,
     distance: number | null,
     order: number,
-    differential_tiem: number
+    differential_time: number
 }

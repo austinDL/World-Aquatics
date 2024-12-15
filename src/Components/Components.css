@@ -1,0 +1,73 @@
+.clickable {
+    cursor: pointer;
+}
+
+.clickable:hover {
+    color: rgb(30, 110, 185);
+}
+
+.inline-button {
+  text-decoration-line: underline;
+  color: blue;
+}
+
+h1, h2, h3 {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Styling for h1 */
+  h1 {
+    font-size: 3rem;
+    color: #333;
+    line-height: 1.2;
+    border-bottom: 3px solid #000;
+    padding-bottom: 10px;
+  }
+  
+  /* Styling for h2 */
+  h2 {
+    font-size: 2.25rem;
+    color: #444;
+    margin-top: 20px;
+    line-height: 1.3;
+  }
+  
+  /* Styling for h3 */
+  h3 {
+    font-size: 1.75rem;
+    color: #555;
+    margin-top: 15px;
+    line-height: 1.4;
+  }
+
+/* Styling for the "Return Home" button */
+.return-home-button {
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: #24558a;
+    color: white;
+    border: 2px solid #06284d;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Hover effect */
+  .return-home-button:hover {
+    background-color: #368eec;
+    border-color: #06284d;
+  }
+
+  /* Table details */
+  .table-header {
+    background-color: #24558a;
+    color: white !important;
+  }
