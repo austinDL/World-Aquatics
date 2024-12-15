@@ -61,5 +61,5 @@ export interface Split {
     time: number,
     distance: number | null,
     order: number,
-    differential_tiem: number
+    differential_time: number
 }
