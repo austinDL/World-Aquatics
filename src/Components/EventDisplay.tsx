@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { List, ListItem } from '@mui/material';
 import { loadEventData } from '../API/Fetch';
 import { Event, Heat } from './Interfaces';
 import './Components.css';
@@ -43,11 +43,11 @@ const EventDisplay: React.FC = () => {
             heat => is_summary ? heat.is_summary : ! heat.is_summary
         );
         return (
-            <ul>
+            <List>
                 { heats_to_display.map(
-                    heat => <li key={heat.name} onClick={() => handle_heat_click(heat)} className='clickable'>{heat.name}</li>
+                    heat => <ListItem key={heat.name} onClick={() => handle_heat_click(heat)} className='clickable'>{heat.name}</ListItem>
                 )}
-            </ul>
+            </List>
         )
     }
 
@@ -65,7 +65,7 @@ const EventDisplay: React.FC = () => {
         }
 
         fetch_data();
-    }, []);
+    }, [event_data]);
 
     // Check if we are still loading or loading yielded no results
     if (is_loading) {

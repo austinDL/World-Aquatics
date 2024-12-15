@@ -1,5 +1,6 @@
 import React from "react";
 import { Dialog, DialogActions, DialogContent, DialogTitle, Button } from '@mui/material';
+import { List, ListItem } from '@mui/material';
 import { Split, Swimmer } from './Interfaces';
 
 interface SplitParams {
@@ -19,13 +20,13 @@ const SplitDisplay: React.FC<SplitParams> = ({ splits, swimmer, is_active, on_cl
             <DialogContent>
                 <div>
                     {is_splits ? <h3>Splits</h3> : <span></span>}
-                    <ul>
+                    <List>
                         {splits?.map(split => (
-                            <li key={split.order}>
+                            <ListItem key={split.order}>
                                 Split {split.order}: {split.time} s
-                            </li>
+                            </ListItem>
                         ))}
-                    </ul>
+                    </List>
                 </div>
             </DialogContent>
             <DialogActions>
