@@ -53,6 +53,7 @@ const EventDisplay: React.FC = () => {
 
     useEffect(() => {
         const fetch_data = async () => {
+            if (event_data !== null) return;
             try {
                 const data: Event = await loadEventData(event_location);
                 set_event_data(data);
@@ -89,7 +90,6 @@ const EventDisplay: React.FC = () => {
         <div>
             <h1>Swimming Event at: {event_location}</h1>
             <h2>{event_data.name}</h2>
-            <p>Select a Heat to view the Results</p>
             <h3>Finals Heats</h3>
             {get_heat_selectors(finalHeats)}
             <h3>Semi-Final Heats</h3>
