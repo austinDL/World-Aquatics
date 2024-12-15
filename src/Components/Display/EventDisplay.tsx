@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { List, ListItem } from '@mui/material';
 import { loadEventData } from '../../API/Fetch';
 import { Event, Heat } from '../Interfaces/ComponentInterfaces';
-import './Components.css';
+import '../Components.css';
 
 const event_location: string = 'Budapest';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { Swimmer } from "./Interfaces";
-import { ReturnHome } from './Buttons';
+import { Swimmer } from "../Interfaces/ComponentInterfaces";
+import { ReturnHome } from '../Buttons';
 
 const SwimmerDisplay: React.FC = () => {
     const { state } = useLocation();

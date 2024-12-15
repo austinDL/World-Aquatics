@@ -2,7 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import EventDisplay from './Components/Display/EventDisplay';
 import HeatDisplay from './Components/Display/HeatDisplay';
-import SwimmerDisplay from './Components/SwimmerDisplay';
+import SwimmerDisplay from './Components/Display/SwimmerDisplay';
 import Banner from './Components/Banner';
 
 function App() {

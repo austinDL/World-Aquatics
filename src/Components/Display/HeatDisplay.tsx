@@ -4,7 +4,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Table
 import { Heat, Swimmer, Split } from '../Interfaces/ComponentInterfaces';
 import { ReturnHome } from '../Buttons';
 import SplitDisplay from './SplitDisplay';
-import './Components.css';
+import '../Components.css';
 
 const HeatDisplay: React.FC = () => {
     const { state } = useLocation();
