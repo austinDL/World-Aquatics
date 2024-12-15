@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import EventDisplay from './Components/EventDisplay';
 import HeatDisplay from './Components/HeatDisplay';
 import SwimmerDisplay from './Components/SwimmerDisplay';
+import Banner from './Components/Banner';
 
 function App() {
 
   return (
     <main>
+      <Banner />
       <Router>
         <Routes>
           <Route path="/" element={<EventDisplay />} />
