@@ -1,8 +1,9 @@
 import React from "react";
 import { Box } from "@mui/material";
+import './Components.css';
 
 const Banner: React.FC = () => {
-    const height_px:number = 100;
+    const height_px:number = 80;
     const base_style = {
         position: "fixed",
         top: "0",
@@ -11,7 +12,7 @@ const Banner: React.FC = () => {
         width: "100%"
     };
     return (
-        <div>
+        <a className="clickable" href="https://www.swimming.org.au/">
             <Box 
                 component="div"
                 sx={{
@@ -29,7 +30,13 @@ const Banner: React.FC = () => {
                 }}
                 role="img"
             />
-        </div>
+            <Box
+                component="div"
+                sx={{
+                    height: `${height_px}px`
+                }}
+            />
+        </a>
     )
 };
 
