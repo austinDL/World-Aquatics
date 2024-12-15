@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { loadEventData } from '../API/Fetch';
 import { Event, Heat } from './Interfaces';
+import './Components.css';
 
 const event_location: string = 'Budapest';
 
@@ -44,7 +45,7 @@ const EventDisplay: React.FC = () => {
         return (
             <ul>
                 { heats_to_display.map(
-                    heat => <li key={heat.name} onClick={() => handle_heat_click(heat)}>{heat.name}</li>
+                    heat => <li key={heat.name} onClick={() => handle_heat_click(heat)} className='clickable'>{heat.name}</li>
                 )}
             </ul>
         )

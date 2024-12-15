@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 import { Heat, Swimmer } from './Interfaces';
+import './Components.css';
 
 const HeatDisplay: React.FC = () => {
     const { state } = useLocation();
@@ -31,7 +32,7 @@ const HeatDisplay: React.FC = () => {
             field: "athlete_name",
             headerName: "Athlete Name",
             renderCell: (params) => (
-                <span onClick={() => handle_swimmer_click(params.row.swimmer)}>
+                <span className='clickable' onClick={() => handle_swimmer_click(params.row.swimmer)}>
                     {params.value}
                 </span>
             )
