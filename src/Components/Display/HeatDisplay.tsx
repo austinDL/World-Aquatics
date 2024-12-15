@@ -1,21 +1,28 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, Paper } from '@mui/material';
-import { Heat, Swimmer, Split } from '../Interfaces/ComponentInterfaces';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, Paper, Tab, Tabs } from '@mui/material';
+import { Heat, Swimmer, Split, Result } from '../Interfaces/ComponentInterfaces';
 import { ReturnHome } from '../Buttons';
 import SplitDisplay from './SplitDisplay';
 import '../Components.css';
 
-const HeatDisplay: React.FC = () => {
-    const { state } = useLocation();
-    const heat: Heat = state.heat;
+interface ResultParams {
+    active_heat: Heat
+}
+
+const ResultDisplay: React.FC<ResultParams> = ({ active_heat }) => {
     // state of splits popups
     const [active_splits, set_active_splits] = useState<Split[]>([]);
     const [active_swimmer, set_active_swimmer] = useState<Swimmer|null>(null);
     const [is_popup, set_is_popup] = useState<boolean>(false);
+    // state of pagination
     const [page, set_page] = useState(0);
     const [rows_per_page, set_rows_per_page] = useState(5);
+    const first_result: number = page * rows_per_page;
+    const last_result: number = first_result + rows_per_page;
+    const results_to_display: Result[] = active_heat.results.slice(first_result, last_result);
 
+    // Helper functions
     const navigate = useNavigate();
     function handle_swimmer_click(swimmer:Swimmer) {
         navigate(`/swimmer/${swimmer.id}`, {
@@ -30,15 +37,9 @@ const HeatDisplay: React.FC = () => {
     function deactivate() {
         set_is_popup(false);
     }
-
-    const first_result: number = page * rows_per_page;
-    const last_result: number = first_result + rows_per_page;
-    const results_to_display = heat.results.slice(first_result, last_result);
-
+    
     return (
         <div>
-            <ReturnHome />
-            <h1>{heat.name}</h1>
             <Paper>
                 <TableContainer>
                     <Table>
@@ -73,7 +74,7 @@ const HeatDisplay: React.FC = () => {
                 <TablePagination
                     rowsPerPageOptions={[3, 5, 10]}
                     component="div"
-                    count={heat.results.length}
+                    count={active_heat.results.length}
                     rowsPerPage={rows_per_page}
                     page={page}
                     onPageChange={(_, page) => set_page(page)}
@@ -86,6 +87,28 @@ const HeatDisplay: React.FC = () => {
                 is_active={is_popup} 
                 on_close={deactivate}
             />
+        </div>
+    );
+}
+
+const HeatDisplay: React.FC = () => {
+    const { state } = useLocation();
+    const heat: Heat = state.heat;
+    const all_heats: Heat[] = state.all_heats;
+    
+    // state of heat navigation
+    const [active_heat_idx, set_active_heat_idx] = useState(all_heats.indexOf(heat));
+    const active_heat = all_heats[active_heat_idx];
+    return (
+        <div>
+            <ReturnHome />
+            <h1>{active_heat.name}</h1>
+            <Tabs value={active_heat_idx} onChange={(_, next_heat_idx) => set_active_heat_idx(next_heat_idx)}>
+                {
+                    all_heats.map((heat, index) => <Tab key={index} label={heat.name} value={index}/>)
+                }
+            </Tabs>
+            <ResultDisplay active_heat={active_heat} />
         </div>
     );
 }

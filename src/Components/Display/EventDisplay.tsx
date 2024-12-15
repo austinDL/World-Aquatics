@@ -13,9 +13,9 @@ const EventDisplay: React.FC = () => {
     const [error_message, set_error_message] = useState<string|null>(null);
 
     const navigate = useNavigate();
-    function handle_heat_click(heat:Heat) {
+    function handle_heat_click(heat:Heat, all_heats:Heat[]) {
         navigate(`heat/${heat.name.replace(' ', '_').toLowerCase()}`, {
-            state: { heat }
+            state: { heat, all_heats}
         });
     }
 
@@ -45,7 +45,7 @@ const EventDisplay: React.FC = () => {
         return (
             <List>
                 { heats_to_display.map(
-                    heat => <ListItem key={heat.name} onClick={() => handle_heat_click(heat)} className='clickable'>{heat.name}</ListItem>
+                    heat => <ListItem key={heat.name} onClick={() => handle_heat_click(heat, heats_to_display)} className='clickable'>{heat.name}</ListItem>
                 )}
             </List>
         )
