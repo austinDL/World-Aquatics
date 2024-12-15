@@ -106,6 +106,6 @@ function map_split(split:SplitPayload): Split {
         time: parseFloat(split.Time),
         distance: _extract_distance(split.Distance),
         order: split.Order,
-        differential_tiem: parseFloat(split.DifferentialTime)
+        differential_time: parseFloat(split.DifferentialTime)
     }
 }
