@@ -65,3 +65,9 @@ h1, h2, h3 {
     background-color: #368eec;
     border-color: #06284d;
   }
+
+  /* Table details */
+  .table-header {
+    background-color: #24558a;
+    color: white !important;
+  }
