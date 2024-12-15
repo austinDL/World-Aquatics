@@ -12,6 +12,11 @@ const EventDisplay: React.FC = () => {
     const [error_message, set_error_message] = useState<string|null>(null);
 
     const navigate = useNavigate();
+    function handle_heat_click(heat:Heat) {
+        navigate(`heat/${heat.name.replace(' ', '_').toLowerCase()}`, {
+            state: { heat }
+        });
+    }
 
     // Helper functions
     function filter_heats(event: Event, include_str:string, exclude_str:string|null = null): Heat[] {
@@ -30,12 +35,6 @@ const EventDisplay: React.FC = () => {
             );
         }
         return filtered_heats;
-    }
-
-    function handle_heat_click(heat:Heat) {
-        navigate(`heat/${heat.name.replace(' ', '_').toLowerCase()}`, {
-            state: { heat }
-        });
     }
 
     function get_heat_selectors(heats:Heat[], is_summary:boolean=false): JSX.Element {
