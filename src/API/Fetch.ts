@@ -80,6 +80,7 @@ function map_result(result:ResultPayload): Result {
             first_name: result.FirstName,
             last_name: result.LastName,
             gender: result.Gender,
+            NAT: result.NAT,
             age: result.AthleteResultAge
         },
         splits: result.Splits.map(map_split),
@@ -88,7 +89,6 @@ function map_result(result:ResultPayload): Result {
         time_behind: parseFloat(result.TimeBehind),
         rank: result.Rank,
         heat_rank: result.HeatRank,
-        NAT: result.NAT,
         scoreboard_photo_id: result.ScoreboardPhoto, // Need to figure out how to get this photo
         medal_tag: result.MedalTag
     }

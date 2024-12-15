@@ -18,7 +18,7 @@ const HeatDisplay: React.FC = () => {
     const rows: GridRowsProp = heat.results.map(result => ({
         id: result.id,
         athlete_name: `${result.swimmer.first_name} ${result.swimmer.last_name}`,
-        country: result.NAT,
+        country: result.swimmer.NAT,
         reaction_time: result.reaction_time,
         time: result.time,
         time_behind: result.time_behind || "Winner", // If time behind is null, then they are the winner of the heat

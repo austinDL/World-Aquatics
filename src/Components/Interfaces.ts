@@ -44,7 +44,6 @@ export interface Result {
     time_behind: number,
     rank: number,
     heat_rank: number,
-    NAT: string,
     scoreboard_photo_id: string, // Need to figure out how to get this photo
     medal_tag: string
 }
@@ -54,6 +53,7 @@ export interface Swimmer {
     first_name: string,
     last_name: string,
     gender: number,
+    NAT: string,
     age: number
 }
 
