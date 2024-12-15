@@ -11,6 +11,8 @@ const NavigateButton: React.FC<NavParams> = ({ path, button_text, class_names}) 
     // Define navigation
     const navigate = useNavigate();
     function handle_click() {
+        if (path === 'back')
+            navigate(-1);
         navigate(path);
     }
     // Customize classes
@@ -23,6 +25,9 @@ const NavigateButton: React.FC<NavParams> = ({ path, button_text, class_names}) 
     return <button className={classes} onClick={handle_click}>
         {button_text}
     </button>
+}
+export const GoBack: React.FC<{button_text:string}> = ({ button_text }) => {
+    return <NavigateButton path='back' button_text={button_text} class_names={['return-home-button']}/>;
 }
 
 export const ReturnHome: React.FC = () => {
