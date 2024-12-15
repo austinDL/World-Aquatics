@@ -43,32 +43,32 @@ const ResultDisplay: React.FC<ResultParams> = ({ active_heat }) => {
             <Paper>
                 <TableContainer>
                     <Table>
-                    <TableHead className='table-header'>
-                        <TableRow>
-                            <TableCell sx={{color: 'white'}}>Athlete Name</TableCell>
-                            <TableCell sx={{color: 'white'}}>Country</TableCell>
-                            <TableCell sx={{color: 'white'}}>Reaction Time (s)</TableCell>
-                            <TableCell sx={{color: 'white'}}>Time (s)</TableCell>
-                            <TableCell sx={{color: 'white'}}>Time Behind (s)</TableCell>
-                            <TableCell sx={{color: 'white'}}> </TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {results_to_display.map(result => (
-                            <TableRow key={result.id}>
-                                <TableCell className='clickable' onClick={() => handle_swimmer_click(result.swimmer)}>
-                                    {result.swimmer.first_name} {result.swimmer.last_name}
-                                </TableCell>
-                                <TableCell>{result.swimmer.NAT}</TableCell>
-                                <TableCell>{result.reaction_time || 'N/A'}</TableCell>
-                                <TableCell>{result.time || 'N/A'}</TableCell>
-                                <TableCell>{result.time_behind ? result.time_behind : result.time ? "Winner" : "N/A"}</TableCell>
-                                <TableCell className='clickable inline-button' onClick={() => handle_split_click(result.splits, result.swimmer)}>
-                                    View Splits
-                                </TableCell>
+                        <TableHead className='table-header'>
+                            <TableRow>
+                                <TableCell sx={{color: 'white'}}>Athlete Name</TableCell>
+                                <TableCell sx={{color: 'white'}}>Country</TableCell>
+                                <TableCell sx={{color: 'white'}}>Reaction Time (s)</TableCell>
+                                <TableCell sx={{color: 'white'}}>Time (s)</TableCell>
+                                <TableCell sx={{color: 'white'}}>Time Behind (s)</TableCell>
+                                <TableCell sx={{color: 'white'}}> </TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
+                        </TableHead>
+                        <TableBody>
+                            {results_to_display.map(result => (
+                                <TableRow key={result.id}>
+                                    <TableCell className='clickable' onClick={() => handle_swimmer_click(result.swimmer)}>
+                                        {result.swimmer.first_name} {result.swimmer.last_name}
+                                    </TableCell>
+                                    <TableCell>{result.swimmer.NAT}</TableCell>
+                                    <TableCell>{result.reaction_time || 'N/A'}</TableCell>
+                                    <TableCell>{result.time || 'N/A'}</TableCell>
+                                    <TableCell>{result.time_behind ? result.time_behind : result.time ? "Winner" : "N/A"}</TableCell>
+                                    <TableCell className='clickable inline-button' onClick={() => handle_split_click(result.splits, result.swimmer)}>
+                                        View Splits
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
                     </Table>
                 </TableContainer>
                 <TablePagination
