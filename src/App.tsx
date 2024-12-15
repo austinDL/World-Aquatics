@@ -9,8 +9,8 @@ function App() {
 
   return (
     <main>
+      <Banner />
       <Router>
-        <Banner />
         <Routes>
           <Route path="/" element={<EventDisplay />} />
           <Route path="/heat/:heat_name" element={<HeatDisplay />} />
