@@ -13,10 +13,42 @@ const EventDisplay: React.FC = () => {
 
     const navigate = useNavigate();
 
+    // Helper functions
+    function filter_heats(event: Event, include_str:string, exclude_str:string|null = null): Heat[] {
+        // Get heats including a name
+        let filtered_heats = event.heats.filter(
+            heat => heat.name.toLowerCase().includes(
+                include_str.toLowerCase()
+        )
+        )
+        // Exclude names that are unwanted
+        if (exclude_str !== null) {
+            filtered_heats = filtered_heats.filter(
+                heat => ! heat.name.toLowerCase().includes(
+                    exclude_str.toLowerCase()
+                )
+            );
+        }
+        return filtered_heats;
+    }
+
     function handle_heat_click(heat:Heat) {
         navigate(`heat/${heat.name.replace(' ', '_').toLowerCase()}`, {
             state: { heat }
         });
+    }
+
+    function get_heat_selectors(heats:Heat[], is_summary:boolean=false): JSX.Element {
+        const heats_to_display: Heat[] = heats.filter(
+            heat => is_summary ? heat.is_summary : ! heat.is_summary
+        );
+        return (
+            <ul>
+                { heats_to_display.map(
+                    heat => <li key={heat.name} onClick={() => handle_heat_click(heat)}>{heat.name}</li>
+                )}
+            </ul>
+        )
     }
 
     useEffect(() => {
@@ -48,18 +80,26 @@ const EventDisplay: React.FC = () => {
         return <div>Event data is empty after loading. Please refresh the page...</div>
     }
 
+    const finalHeats: Heat[] = filter_heats(event_data, "final", "semi");
+    const semiFinalHeats: Heat[] = filter_heats(event_data, "semifinal");
+    const standardHeats: Heat[] = filter_heats(event_data, "heat");
+
+
     return (
         <div>
             <h1>Swimming Event at: {event_location}</h1>
             <h2>{event_data.name}</h2>
             <p>Select a Heat to view the Results</p>
-            <ul>
-                {event_data.heats.filter(heat => ! heat.is_summary).map(heat => (
-                    <li key={heat.name} onClick={() => handle_heat_click(heat)}>
-                        {heat.name}
-                    </li>
-                ))}
-            </ul>
+            <h3>Finals Heats</h3>
+            {get_heat_selectors(finalHeats)}
+            <h3>Semi-Final Heats</h3>
+            {get_heat_selectors(semiFinalHeats)}
+            <hr />
+            {get_heat_selectors(semiFinalHeats, true)}
+            <h3>First Round Heats</h3>
+            {get_heat_selectors(standardHeats)}
+            <hr />
+            {get_heat_selectors(standardHeats, true)}
         </div>
     );
 }
