@@ -72,3 +72,7 @@ h1, h2, h3 {
     background-color: #24558a;
     color: white !important;
   }
+
+  li {
+    background-color: white !important;
+  }
